@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/qr_code/scan.dart';
+import 'file:///C:/Users/emman/Desktop/cour%20EPSI/MSPR/MSPR_POMME/lib/view/scan.dart';
 
 class DrawernavBarre extends StatelessWidget{
   @override

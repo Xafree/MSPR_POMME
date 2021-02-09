@@ -3,10 +3,11 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_app/qr_code/scan.dart';
+import 'file:///C:/Users/emman/Desktop/cour%20EPSI/MSPR/MSPR_POMME/lib/view/scan.dart';
 class Qrcodecontroller {
 
-  static final urlOneProduct = 'http://192.168.1.11:8080/product';
+  static final urlPostOneProduct = 'http://192.168.1.11:8080/product';
+  static final urlGetOneProduct = 'http://192.168.1.11:8080/product/';
   HttpClientResponse client;
   Qrcodecontroller() {}
 
@@ -19,7 +20,7 @@ class Qrcodecontroller {
     };
     //encode Map to JSON
     var body = json.encode(data);
-    var response = await http.post(urlOneProduct,
+    var response = await http.post(urlPostOneProduct,
         headers: {"Content-Type": "application/json"}, body: body);
     print("${response.statusCode}");
     print("${response.body}");
@@ -27,9 +28,10 @@ class Qrcodecontroller {
     return response;
   }
 
-  Future<dynamic> getCodePormot(String code) async {
-    var res = await http.get(urlOneProduct + "/" + code);
-    print(res?.body);
-    return res?.body;
+  Future<http.Response> getCodePromos(String code) async {
+    var res = await http.get(urlGetOneProduct + code);
+    print("${res.statusCode}");
+    print("${res.body}");
+    return res;
   }
 }

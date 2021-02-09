@@ -7,7 +7,7 @@ import 'package:flutter_app/api/qrcodeController.dart';
 
 
 class ScanPage extends StatefulWidget {
-  static const routeName = "/ScanPage";
+  static const routeName = "/view/ScanPage";
   @override
   _ScanPageState createState() => _ScanPageState();
 }
