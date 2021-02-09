@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:flutter_app/api/qrcodeController.dart';
+import 'package:flutter_app/api/api_qr_code.dart';
 
 
 class ScanPage extends StatefulWidget {
@@ -14,10 +14,10 @@ class ScanPage extends StatefulWidget {
 
 class _ScanPageState extends State<ScanPage> {
 
-  Qrcodecontroller qrController = new Qrcodecontroller();
+  ApiQrCode qrController = new ApiQrCode();
   HttpClientResponse client;
   String qrCodeResult = "";
-  Qrcodecontroller controllerQrCode = new Qrcodecontroller();
+  ApiQrCode controllerQrCode = new ApiQrCode();
 
   bool backCamera = true;
 

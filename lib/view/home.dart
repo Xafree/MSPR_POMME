@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../api/qrcodeController.dart';
+import '../api/api_qr_code.dart';
 import 'template/drawer.dart';
 import 'template/footer.dart';
 
@@ -16,7 +16,7 @@ class Home extends StatefulWidget{
 
 class _HomeState extends State<Home>{
 
-  Qrcodecontroller controller = new Qrcodecontroller();
+  ApiQrCode controller = new ApiQrCode();
 
 
   @override

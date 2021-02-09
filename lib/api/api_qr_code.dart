@@ -4,12 +4,13 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'file:///C:/Users/emman/Desktop/cour%20EPSI/MSPR/MSPR_POMME/lib/view/scan.dart';
-class Qrcodecontroller {
+
+class ApiQrCode {
 
   static final urlPostOneProduct = 'http://192.168.1.11:8080/product';
   static final urlGetOneProduct = 'http://192.168.1.11:8080/product/';
   HttpClientResponse client;
-  Qrcodecontroller() {}
+  ApiQrCode() {}
 
   Future<http.Response> addDataProduct(int codeController,context) async {
 
