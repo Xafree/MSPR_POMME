@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:flutter_app/controller/qrcodeController.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_app/api/qrcodeController.dart';
+
 
 class ScanPage extends StatefulWidget {
   static const routeName = "/ScanPage";
@@ -40,7 +40,7 @@ class _ScanPageState extends State<ScanPage> {
           actions: <Widget>[
             IconButton(
               icon: backCamera
-                  ? Icon(Ionicons.ios_reverse_camera)
+                  ? Icon(Ionicons.ios_camera_reverse)
                   : Icon(Icons.camera),
               onPressed: () {
                 setState(() {
@@ -56,7 +56,7 @@ class _ScanPageState extends State<ScanPage> {
                   options: ScanOptions(
                     useCamera: camera,
                   ),
-                ); //barcode scnner
+                ); //barcode scanner
                 setState(() {
                   qrCodeResult = codeSanner.rawContent;
                 });

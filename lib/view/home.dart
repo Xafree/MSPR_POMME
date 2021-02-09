@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'controller/qrcodeController.dart';
-import 'drawer.dart';
-import 'footer.dart';
+import '../api/qrcodeController.dart';
+import 'template/drawer.dart';
+import 'template/footer.dart';
 
 class Home extends StatefulWidget{
   @override
@@ -23,7 +23,7 @@ class _HomeState extends State<Home>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('App Epsi'),
+        title: const Text('POMME'),
       ),
       drawer: DrawernavBarre(),
       body:SafeArea(

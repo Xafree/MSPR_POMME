@@ -11,6 +11,7 @@ class Qrcodecontroller {
   Qrcodecontroller() {}
 
   Future<http.Response> addDataProduct(int codeController,context) async {
+
     Map data = { // A modifier quand le service sera good
       "typeProduit": "Chemise",
       "description": "Chemise coupe slim, diponible de M à XXL",
@@ -31,5 +32,4 @@ class Qrcodecontroller {
     print(res?.body);
     return res?.body;
   }
-
 }
