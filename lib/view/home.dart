@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../api/api_qr_code.dart';
@@ -30,7 +28,7 @@ class _HomeState extends State<Home>{
         child:Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-              IconButton(icon: Icon(Icons.plus_one), ),
+              IconButton(icon: Icon(Icons.plus_one),onPressed: null, ),
           ],
         ),
       ),

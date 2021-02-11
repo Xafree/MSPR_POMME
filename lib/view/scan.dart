@@ -15,21 +15,13 @@ class ScanPage extends StatefulWidget {
 class _ScanPageState extends State<ScanPage> {
 
   ApiQrCode qrController = new ApiQrCode();
-  HttpClientResponse client;
   String qrCodeResult = "";
-  ApiQrCode controllerQrCode = new ApiQrCode();
-
+  bool scanValeur = false;
+  ApiQrCode apiQrCode = new ApiQrCode();
   bool backCamera = true;
 
   String PostqrCode(String code,context) {
-    String mess = " ";
-    if(code == null){
-      mess = "Incorrecte QR code";
-    }else{
       qrController.addDataProduct(int.parse(code),context);
-      mess = "Qr code envoyé";
-    }
-    return mess;
   }
 
   @override
@@ -59,20 +51,40 @@ class _ScanPageState extends State<ScanPage> {
                 ); //barcode scanner
                 setState(() {
                   qrCodeResult = codeSanner.rawContent;
+                  (qrCodeResult == null && qrCodeResult == "")? scanValeur=false:scanValeur=true;
                 });
               },
             )
           ],
         ),
-        body: Center(
-          child: Text(
-            (qrCodeResult == null) || (qrCodeResult == "")
-                ? "Scanner un QR code"
-                : PostqrCode(qrCodeResult,context),
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
-          ),
-        ));
+        body: Column(
+        children: <Widget>[
+          Text((!scanValeur)?
+          "Scanner un QR code !": "Le code promos est : "+qrCodeResult),
+        RaisedButton(onPressed: () {
+          PostqrCode(qrCodeResult,context);
+        },
+            child: Text(
+                (!scanValeur)?
+                "Scanner un QR code !": "Envoyer le QR code"
+                , style: TextStyle(fontSize: 20) )
+        ),
+        ],
+    )
+    );
+
   }
 }
 
 int camera = 1;
+/**
+    Center(
+    child: Text(
+    (qrCodeResult == null) || (qrCodeResult == "")
+    ? "Scanner un QR code"
+    : "le code promos est" +qrCodeResult,
+    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
+    ),
+    ));
+
+*/

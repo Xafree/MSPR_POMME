@@ -10,7 +10,7 @@ class ApiQrCode {
   static final urlPostOneProduct = 'http://192.168.1.11:8080/product';
   static final urlGetOneProduct = 'http://192.168.1.11:8080/product/';
   HttpClientResponse client;
-  ApiQrCode() {}
+  ApiQrCode();
 
   Future<http.Response> addDataProduct(int codeController,context) async {
 
