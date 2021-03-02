@@ -1,12 +1,16 @@
-import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/api/api_product.dart';
 import '../api/api_qr_code.dart';
 import 'template/drawer.dart';
 import 'template/footer.dart';
+import '../model/item_liste.dart';
 
 class Home extends StatefulWidget{
+  static const routeName = "/";
+
   @override
   State<StatefulWidget> createState() {
     return _HomeState();
@@ -15,9 +19,19 @@ class Home extends StatefulWidget{
 }
 
 class _HomeState extends State<Home>{
-
+  List data;
   ApiQrCode controller = new ApiQrCode();
+  ApiProduct productController = new ApiProduct();
 
+  Future<List> getData() async {
+    return productController.getAllProductHtpp();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.getData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +40,18 @@ class _HomeState extends State<Home>{
         title: const Text('POMME'),
       ),
       drawer: DrawernavBarre(),
-      body:SafeArea(
-        child:Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-              IconButton(icon: Icon(Icons.plus_one), ),
-          ],
-        ),
+      body: new FutureBuilder<List>(
+        future: getData(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) print(snapshot.error);
+          return snapshot.hasData
+              ? new ItemList(
+            list: snapshot.data,
+          )
+              : new Center(
+            child: new CircularProgressIndicator(),
+          );
+        },
       ),
       bottomNavigationBar: Footer(),
     );
