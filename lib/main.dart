@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/view/login_page.dart';
 import 'view/home.dart';
 import 'view/scan.dart';
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Login(),
+  ));
+}
+
+/*
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
 
+class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -18,10 +28,10 @@ class MyApp extends StatelessWidget {
       ),
       //initialRoute: '/',
       routes: {
-        '/' : (_)=> Home(),
-        ScanPage.routeName : (_) => ScanPage(),
+        '/': (_) => Home(),
+        ScanPage.routeName: (_) => ScanPage(),
       },
     );
   }
 }
-
+*/
