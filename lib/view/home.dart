@@ -1,5 +1,5 @@
-import 'dart:convert';
 
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/api/api_product.dart';
@@ -8,15 +8,15 @@ import 'template/drawer.dart';
 import 'template/footer.dart';
 import '../model/item_liste.dart';
 
+
 class Home extends StatefulWidget{
   static const routeName = "/";
-
   @override
   State<StatefulWidget> createState() {
     return _HomeState();
   }
-
 }
+
 
 class _HomeState extends State<Home>{
   List data;
@@ -52,6 +52,7 @@ class _HomeState extends State<Home>{
             child: new CircularProgressIndicator(),
           );
         },
+
       ),
       bottomNavigationBar: Footer(),
     );

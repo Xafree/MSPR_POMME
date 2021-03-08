@@ -1,7 +1,9 @@
-import 'dart:io';
-
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/model/coupon.dart';
+import 'package:flutter_app/model/coupon_item.dart';
+import 'package:flutter_app/view/template/drawer.dart';
+import 'package:flutter_app/view/template/footer.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter_app/api/api_qr_code.dart';
 
@@ -14,41 +16,33 @@ class ScanPage extends StatefulWidget {
 
 class _ScanPageState extends State<ScanPage> {
 
+  Future<String> item = new Future<String>(null);
   ApiQrCode qrController = new ApiQrCode();
-  HttpClientResponse client;
-  String qrCodeResult = "";
-  ApiQrCode controllerQrCode = new ApiQrCode();
-
+  String qrCodeResult ;
+  bool scanValeur = false;
   bool backCamera = true;
 
-  String PostqrCode(String code,context) {
-    String mess = " ";
-    if(code == null){
-      mess = "Incorrecte QR code";
-    }else{
+  _ScanPageState();
+
+  PostqrCode(String code,context) {
       qrController.addDataProduct(int.parse(code),context);
-      mess = "Qr code envoyé";
-    }
-    return mess;
+  }
+
+  Future<List> getQrCode(String code) async {
+    return await qrController.getCodePromos(code);
+  }
+  @override
+  void initState() {
+    super.initState();
+   // this.getQrCode(this.qrCodeResult);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Scan using:" + (backCamera ? "Front Cam" : "Back Cam")),
+          title: Text("POMME"),
           actions: <Widget>[
-            IconButton(
-              icon: backCamera
-                  ? Icon(Ionicons.ios_camera_reverse)
-                  : Icon(Icons.camera),
-              onPressed: () {
-                setState(() {
-                  backCamera = !backCamera;
-                  camera = backCamera ? 1 : -1;
-                });
-              },
-            ),
             IconButton(
               icon: Icon(MaterialCommunityIcons.qrcode_scan),
               onPressed: () async {
@@ -59,20 +53,42 @@ class _ScanPageState extends State<ScanPage> {
                 ); //barcode scanner
                 setState(() {
                   qrCodeResult = codeSanner.rawContent;
+                  this.getQrCode(qrCodeResult);
+                  (qrCodeResult == null && qrCodeResult == "")? scanValeur=false:scanValeur=true;
                 });
               },
-            )
+            ),
           ],
         ),
-        body: Center(
-          child: Text(
-            (qrCodeResult == null) || (qrCodeResult == "")
-                ? "Scanner un QR code"
-                : PostqrCode(qrCodeResult,context),
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
-          ),
-        ));
+        drawer: DrawernavBarre(),
+        body:new FutureBuilder<List>(
+          future: getQrCode(qrCodeResult),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) print(snapshot.error);
+            return snapshot.hasData
+                ? new CouponItem(
+              list: snapshot.data,
+            )
+                : new Center(
+                  child: Text("Scanner un QR code !"),
+            );
+          },
+
+        ),
+        bottomNavigationBar: Footer(),
+    );
   }
 }
 
-int camera = 1;
+int camera = -1;
+/**
+    Center(
+    child: Text(
+    (qrCodeResult == null) || (qrCodeResult == "")
+    ? "Scanner un QR code"
+    : "le code promos est" +qrCodeResult,
+    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
+    ),
+    ));
+
+*/
