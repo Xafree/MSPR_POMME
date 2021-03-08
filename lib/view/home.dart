@@ -49,7 +49,7 @@ class _HomeState extends State<Home>{
             list: snapshot.data,
           )
               : new Center(
-            child: new CircularProgressIndicator(),
+                child: new CircularProgressIndicator(),
           );
         },
 

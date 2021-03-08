@@ -6,7 +6,17 @@ import 'view/scan.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: Login(),
+      title: 'POMME',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+    //home: Login(),
+      routes: {
+        '/': (_) => Login(),
+        '/home': (_) => Home(),
+        ScanPage.routeName: (_) => ScanPage(),
+      }
   ));
 }
 

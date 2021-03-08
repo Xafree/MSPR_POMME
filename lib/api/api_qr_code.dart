@@ -29,7 +29,6 @@ class ApiQrCode {
   }
 
   Future<List> getCodePromos(String code) async {
-    print("Test URL :"+urlGetOneProduct+code);
     var res = await http.get(urlGetOneProduct + code);
     print('Response status: ${res.statusCode}');
     print('Response body: ${res.body}');

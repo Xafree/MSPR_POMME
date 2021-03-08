@@ -1,6 +1,5 @@
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/coupon.dart';
 import 'package:flutter_app/model/coupon_item.dart';
 import 'package:flutter_app/view/template/drawer.dart';
 import 'package:flutter_app/view/template/footer.dart';
@@ -31,10 +30,11 @@ class _ScanPageState extends State<ScanPage> {
   Future<List> getQrCode(String code) async {
     return await qrController.getCodePromos(code);
   }
+
   @override
   void initState() {
     super.initState();
-   // this.getQrCode(this.qrCodeResult);
+   //this.getQrCode(this.qrCodeResult);
   }
 
   @override
@@ -62,7 +62,7 @@ class _ScanPageState extends State<ScanPage> {
         ),
         drawer: DrawernavBarre(),
         body:new FutureBuilder<List>(
-          future: getQrCode(qrCodeResult),
+          future: this.getQrCode(qrCodeResult),
           builder: (context, snapshot) {
             if (snapshot.hasError) print(snapshot.error);
             return snapshot.hasData
@@ -73,7 +73,6 @@ class _ScanPageState extends State<ScanPage> {
                   child: Text("Scanner un QR code !"),
             );
           },
-
         ),
         bottomNavigationBar: Footer(),
     );

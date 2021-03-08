@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../scan.dart';
+import 'package:flutter_app/view/scan.dart';
 import '../login_page.dart';
 
 class DrawernavBarre extends StatelessWidget {
@@ -41,7 +41,7 @@ class DrawernavBarre extends StatelessWidget {
             title: Text('setting'),
           ),
           ListTile(
-            leading: Icon(Icons.qr_code),
+            leading: Icon(Icons.logout),
             title: Text('Deconnexion'),
             onTap: () {
               Navigator.push(
