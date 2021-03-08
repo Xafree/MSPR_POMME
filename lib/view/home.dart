@@ -6,18 +6,15 @@ import '../api/api_qr_code.dart';
 import 'template/drawer.dart';
 import 'template/footer.dart';
 
-class Home extends StatefulWidget{
+class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _HomeState();
   }
-
 }
 
-class _HomeState extends State<Home>{
-
+class _HomeState extends State<Home> {
   ApiQrCode controller = new ApiQrCode();
-
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +23,13 @@ class _HomeState extends State<Home>{
         title: const Text('POMME'),
       ),
       drawer: DrawernavBarre(),
-      body:SafeArea(
-        child:Column(
+      body: SafeArea(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-              IconButton(icon: Icon(Icons.plus_one), ),
+            IconButton(
+              icon: Icon(Icons.plus_one),
+            ),
           ],
         ),
       ),
