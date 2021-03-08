@@ -1,7 +1,7 @@
-import 'dart:io';
-
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/model/coupon.dart';
+import 'package:flutter_app/model/coupon_item.dart';
 import 'package:flutter_app/view/template/drawer.dart';
 import 'package:flutter_app/view/template/footer.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -16,17 +16,25 @@ class ScanPage extends StatefulWidget {
 
 class _ScanPageState extends State<ScanPage> {
 
+  Future<String> item = new Future<String>(null);
   ApiQrCode qrController = new ApiQrCode();
-  String qrCodeResult = "";
+  String qrCodeResult ;
   bool scanValeur = false;
   bool backCamera = true;
+
+  _ScanPageState();
 
   PostqrCode(String code,context) {
       qrController.addDataProduct(int.parse(code),context);
   }
 
-  getQrCode(String code) {
-    qrController.getCodePromos(code);
+  Future<List> getQrCode(String code) async {
+    return await qrController.getCodePromos(code);
+  }
+  @override
+  void initState() {
+    super.initState();
+   // this.getQrCode(this.qrCodeResult);
   }
 
   @override
@@ -45,6 +53,7 @@ class _ScanPageState extends State<ScanPage> {
                 ); //barcode scanner
                 setState(() {
                   qrCodeResult = codeSanner.rawContent;
+                  this.getQrCode(qrCodeResult);
                   (qrCodeResult == null && qrCodeResult == "")? scanValeur=false:scanValeur=true;
                 });
               },
@@ -52,25 +61,22 @@ class _ScanPageState extends State<ScanPage> {
           ],
         ),
         drawer: DrawernavBarre(),
-        body: Column(
-          children: <Widget>[
-            //if(!scanValeur){},
-            Text((!scanValeur)?
-            "Scanner un QR code !": "Le code promos est : "+qrCodeResult),
-          RaisedButton(onPressed: () {
-            getQrCode(qrCodeResult);
+        body:new FutureBuilder<List>(
+          future: getQrCode(qrCodeResult),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) print(snapshot.error);
+            return snapshot.hasData
+                ? new CouponItem(
+              list: snapshot.data,
+            )
+                : new Center(
+                  child: Text("Scanner un QR code !"),
+            );
           },
-              child: Text(
-                  (!scanValeur)?
-                  "Scanner un QR code !": "Envoyer le QR code"
-                  , style: TextStyle(fontSize: 20) )
-          ),
-          ],
+
         ),
         bottomNavigationBar: Footer(),
     );
-
-
   }
 }
 
