@@ -7,8 +7,7 @@ import '../view/scan.dart';
 
 class ApiProduct {
   static final urlPostOneProduct = 'http://192.168.1.11:8080/product';
-  static final urlGetAllProduct =
-      'http://192.168.42.138:8080/couponresponse/ville/toulon';
+  static final urlGetAllProduct ='http://192.168.42.138:8080/couponresponse/ville/toulon';
 
   ApiProduct();
 

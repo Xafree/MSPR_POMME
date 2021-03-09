@@ -1,35 +1,29 @@
 import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_app/view/scan.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_session/flutter_session.dart';
 
 class ApiQrCode {
-  static final urlPostOneProduct = 'http://192.168.1.11:8080/product';
-  static final urlGetOneProduct = 'http://192.168.42.138:8080/couponresponse/';
+
+  static final urlAddOneCoupon = 'http://192.168.42.138:8080/clientspace/coupon';
+  static final urlGetOneCoupon = 'http://192.168.42.138:8080/couponresponse/';
 
   ApiQrCode();
 
 
-  Future<http.Response> addDataProduct(int codeController, context) async {
+  Future<http.Response> addUserCoupon(String email, String dateRef ) async {
     Map data = {
-      // A modifier quand le service sera good
-      "typeProduit": "Chemise",
-      "description": "Chemise coupe slim, diponible de M à XXL",
-      "codeProduit": codeController
+      "client_space": {"login_mail": "$email"},
+      "coupon_is_consulted": {"stringDateRef": "$dateRef"}
     };
-    //encode Map to JSON
     var body = json.encode(data);
-    var response = await http.post(urlPostOneProduct,
-        headers: {"Content-Type": "application/json"}, body: body);
+    var response = await http.post(urlAddOneCoupon,headers: {"Content-Type": "application/json"}, body: body);
     print("${response.statusCode}");
     print("${response.body}");
-    Navigator.of(context).pushNamed(ScanPage.routeName);
     return response;
   }
 
   Future<List> getCodePromos(String code) async {
-    var res = await http.get(urlGetOneProduct + code);
+    var res = await http.get(urlGetOneCoupon + code);
     print('Response status: ${res.statusCode}');
     print('Response body: ${res.body}');
     return json.decode(res.body);

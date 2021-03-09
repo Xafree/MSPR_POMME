@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/view/dashboard.dart';
 import 'package:flutter_app/view/login_page.dart';
 import 'view/home.dart';
 import 'view/scan.dart';
