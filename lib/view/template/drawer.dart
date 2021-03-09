@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/view/dashboard.dart';
 import 'package:flutter_app/view/home.dart';
 import 'package:flutter_app/view/scan.dart';
+import '../coupons.dart';
 import '../login_page.dart';
 
 class DrawernavBarre extends StatelessWidget {
@@ -42,6 +43,9 @@ class DrawernavBarre extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Mes coupons'),
+            onTap: () {
+              Navigator.of(context).pushNamed(Coupons.routeName);
+            },
           ),
           ListTile(
             leading: Icon(Icons.logout),

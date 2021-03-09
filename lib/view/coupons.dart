@@ -1,0 +1,72 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_app/api/api_product.dart';
+import 'package:flutter_app/model/user_couponslist.dart';
+import 'package:flutter_session/flutter_session.dart';
+import 'template/drawer.dart';
+import 'template/footer.dart';
+import '../model/item_liste.dart';
+
+class Coupons extends StatefulWidget {
+  static const routeName = "/mescoupons";
+  @override
+  State<StatefulWidget> createState() {
+    return _CouponState();
+  }
+}
+
+class _CouponState extends State<Coupons> {
+  List data;
+  ApiProduct productController = new ApiProduct();
+
+  dynamic mail;
+  Future<List> getCoupons(mail) async {
+    return productController.getCoupons(mail);
+  }
+
+  String getmail1() {
+    FutureBuilder(
+        future: FlutterSession().get("email"),
+        builder: (context, snapshot) {
+          mail = snapshot.data;
+          return Text(" ");
+        });
+  }
+
+  void initState() {
+    getmail();
+    super.initState();
+  }
+
+  getmail() async {
+    final mailsession = await FlutterSession().get("email");
+    setState(() {
+      mail = mailsession.toString() ?? 'default';
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print(mail);
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Mes coupons'),
+      ),
+      drawer: DrawernavBarre(),
+      body: new FutureBuilder<List>(
+        future: getCoupons(mail),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) print(snapshot.error);
+          return snapshot.hasData
+              ? new UserCoupons(
+                  list: snapshot.data,
+                )
+              : new Center(
+                  child: new CircularProgressIndicator(),
+                );
+        },
+      ),
+      bottomNavigationBar: Footer(),
+    );
+  }
+}

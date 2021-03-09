@@ -28,5 +28,4 @@ class ApiQrCode {
     print('Response body: ${res.body}');
     return json.decode(res.body);
   }
-
 }

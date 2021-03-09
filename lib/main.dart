@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/view/dashboard.dart';
+import 'package:flutter_app/view/coupons.dart';
 import 'package:flutter_app/view/login_page.dart';
 import 'view/home.dart';
 import 'view/scan.dart';
 
 void main() {
   runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       title: 'POMME',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-    //home: Login(),
+      //home: Login(),
       routes: {
         '/': (_) => Login(),
         '/home': (_) => Home(),
+        '/mescoupons': (_) => Coupons(),
         ScanPage.routeName: (_) => ScanPage(),
-      }
-  ));
+      }));
 }
 
 /*
