@@ -23,10 +23,6 @@ class _ScanPageState extends State<ScanPage> {
 
   _ScanPageState();
 
-  PostqrCode(String code,context) {
-      qrController.addDataProduct(int.parse(code),context);
-  }
-
   Future<List> getQrCode(String code) async {
     return await qrController.getCodePromos(code);
   }

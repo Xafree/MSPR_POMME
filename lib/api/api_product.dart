@@ -8,13 +8,10 @@ import 'package:http/http.dart' as http;
 import '../view/scan.dart';
 
 class ApiProduct {
-  static final urlPostOneProduct = 'http://192.168.0.13:8080/product';
 
-  static final urlGetAllProduct =
-      'http://192.168.0.13:8080/couponresponse/ville/toulon';
-
-  static final urlGetCouponByMail =
-      'http://192.168.0.13:8080/clientspace/coupons';
+  static final urlPostOneProduct = 'http://192.168.1.11:8080/product';
+  static final urlGetAllProduct ='http://192.168.42.138:8080/couponresponse/ville/toulon';
+  static final urlGetCouponByMail ='http://192.168.0.13:8080/clientspace/coupons';
 
   ApiProduct();
 

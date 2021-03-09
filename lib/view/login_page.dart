@@ -5,6 +5,7 @@ import 'package:flutter_app/view/register_page.dart';
 import 'package:flutter_session/flutter_session.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_session/flutter_session.dart';
 
 import '../model/user.dart';
 import 'home.dart';
@@ -26,6 +27,8 @@ class _LoginState extends State<Login> {
         headers: {'Content-Type': 'application/json'},
         body:
             json.encode({'login_mail': user.email, 'password': user.password}));
+    var session = FlutterSession();
+    await session.set("email", user.email);
     print(res.body);
     if (res.body != null) {
       await FlutterSession().set('email', user.email);

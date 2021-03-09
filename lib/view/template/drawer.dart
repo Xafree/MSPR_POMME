@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/view/dashboard.dart';
+import 'package:flutter_app/view/home.dart';
 import 'package:flutter_app/view/scan.dart';
 import '../coupons.dart';
 import '../login_page.dart';
@@ -8,18 +10,16 @@ class DrawernavBarre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      // Add a ListView to the drawer. This ensures the user can scroll
-      // through the options in the drawer if there isn't enough vertical
-      // space to fit everything.
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Color.fromRGBO(233, 65, 82, 1),
             ),
-            child: Text(
-              'EPSI',
+            child:
+            Text(
+              'Menu',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -27,8 +27,11 @@ class DrawernavBarre extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text('Profile'),
+            leading: Icon(Icons.home),
+            title: Text('Home'),
+            onTap: () {
+              Navigator.of(context).pushNamed(Home.routeName);
+            },
           ),
           ListTile(
             leading: Icon(Icons.qr_code),
@@ -39,7 +42,7 @@ class DrawernavBarre extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text('mes coupons'),
+            title: Text('Mes coupons'),
             onTap: () {
               Navigator.of(context).pushNamed(Coupons.routeName);
             },
