@@ -37,7 +37,6 @@ class _CouponState extends State<Coupons> {
 
   @override
   Widget build(BuildContext context) {
-    print(mail);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(233, 65, 82, 1),

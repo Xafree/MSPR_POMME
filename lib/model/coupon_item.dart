@@ -116,7 +116,6 @@ class CouponItem extends StatelessWidget {
             FutureBuilder(
                 future : FlutterSession().get("email") ,
                 builder: (context, snapshot){
-                  print(snapshot.data);
                   email = snapshot.data;
               return Text(" ");
             }),
