@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter_session/flutter_session.dart';
 
 class ApiQrCode {
 
@@ -8,7 +7,6 @@ class ApiQrCode {
   static final urlGetOneCoupon = 'http://192.168.42.138:8080/couponresponse/';
 
   ApiQrCode();
-
 
   Future<http.Response> addUserCoupon(String email, String dateRef ) async {
     Map data = {

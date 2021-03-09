@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,7 +19,6 @@ class ItemList extends StatelessWidget {
                 height: 110,
                 child: new Card(
                   margin: const EdgeInsets.fromLTRB(0,0.5,0,0),
-                  //color: Color.fromRGBO(237, 127, 16, 1), //237 | 127 | 16
                   child: Column(
                     children: [
                       Padding(
@@ -34,7 +31,6 @@ class ItemList extends StatelessWidget {
                               child: Text(
                                 list[i]['type'].toString(),
                                 style: GoogleFonts.roboto(
-                                    // fontWeight: FontWeight.bold,
                                     fontSize: 20.0,
                                     color: Color.fromRGBO(30, 30, 30, 1),
                                     fontWeight: FontWeight.w600,
@@ -77,7 +73,10 @@ class ItemList extends StatelessWidget {
                               child: Text(
                                 "Obtenez une reduction de "+list[i]['prix_pourcentage_reduction'].toString()+"% avec un code promo ",
                                 style: GoogleFonts.roboto(
-                                    fontSize: 15.0, color: Color.fromRGBO(233, 65, 82, 1),fontWeight: FontWeight.w600),
+                                    fontSize: 15.0,
+                                    color: Color.fromRGBO(233, 65, 82, 1),
+                                    fontWeight: FontWeight.w600
+                                ),
                               ),
                             ),
                           ],

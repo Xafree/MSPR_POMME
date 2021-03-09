@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/view/dashboard.dart';
 import 'package:flutter_app/view/home.dart';
 import 'package:flutter_app/view/scan.dart';
+import 'package:flutter_session/flutter_session.dart';
 import '../coupons.dart';
 import '../login_page.dart';
 
@@ -52,6 +52,7 @@ class DrawernavBarre extends StatelessWidget {
             title: Text('Deconnexion'),
             onTap: () {
               Navigator.push(
+                // Faire un destroye de la session
                   context, MaterialPageRoute(builder: (context) => Login()));
             },
           ),

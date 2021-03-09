@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class UserCoupons extends StatelessWidget {
   final List list;
@@ -16,56 +15,73 @@ class UserCoupons extends StatelessWidget {
           children: [
             new Container(
               child: Container(
-                //color: Colors.black,
-                height: 150.3,
+                color: Color.fromRGBO(206, 206, 206, 1),
+                height: 110,
                 child: new Card(
-                  color: Colors
-                      .primaries[Random().nextInt(Colors.primaries.length)],
+                  margin: const EdgeInsets.fromLTRB(0,0.5,0,0),
                   child: Column(
-                    mainAxisSize: MainAxisSize.min, // add this
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
+                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.fromLTRB(10,10,10,5),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
+                              padding: const EdgeInsets.fromLTRB(5,2,0,0),
                               child: Text(
                                 list[i][1].toString(),
-                                style: TextStyle(
-                                    fontSize: 20.0, color: Colors.black87),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Row(
-                          children: [
-                            Container(
-                              child: Text(
-                                list[i][2].toString(),
-                                style: TextStyle(
-                                    fontSize: 12.0, color: Colors.black87),
+                                style: GoogleFonts.roboto(
+                                  fontSize: 20.0,
+                                  color: Color.fromRGBO(30, 30, 30, 1),
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                             Container(
                               margin: EdgeInsets.only(left: 20),
                               alignment: Alignment.bottomRight,
-                              child: Row(
-                                children: [
-                                  Text(
-                                    list[i][3].toString() + "€",
-                                    style: TextStyle(
-                                        fontSize: 12.0, color: Colors.black87),
-                                  ),
-                                ],
+                              child:Text(
+                                list[i][3].toString() + "€",
+                                style: GoogleFonts.roboto(
+                                  fontSize: 20.0, color: Color.fromRGBO(60, 60, 60, 1),fontWeight: FontWeight.w700,),
                               ),
                             ),
                           ],
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16,0,5,8),
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Text(
+                                ""+list[i][2].toString(),
+                                style: GoogleFonts.roboto(
+                                  fontSize: 15.0,
+                                  color: Color.fromRGBO(60, 60, 60, 1),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                       Padding(
+                         padding: const EdgeInsets.fromLTRB(16,0,5,5),
+                         child: Row(
+                           children: [
+                             Container(
+                               child: Text(
+                                 "Vous avez un bon d'achat de "+list[i][4].toString()+"% sur cette article ",
+                                 style: GoogleFonts.roboto(
+                                     fontSize: 15.0,
+                                     color: Color.fromRGBO(233, 65, 82, 1),
+                                     fontWeight: FontWeight.w600
+                                 ),
+                               ),
+                             ),
+                           ],
+                         ),
+                       ),
                     ],
                   ),
                 ),

@@ -4,8 +4,7 @@ import 'package:flutter_app/api/api_product.dart';
 import 'package:flutter_app/model/user_couponslist.dart';
 import 'package:flutter_session/flutter_session.dart';
 import 'template/drawer.dart';
-import 'template/footer.dart';
-import '../model/item_liste.dart';
+
 
 class Coupons extends StatefulWidget {
   static const routeName = "/mescoupons";
@@ -22,15 +21,6 @@ class _CouponState extends State<Coupons> {
   dynamic mail;
   Future<List> getCoupons(mail) async {
     return productController.getCoupons(mail);
-  }
-
-  String getmail1() {
-    FutureBuilder(
-        future: FlutterSession().get("email"),
-        builder: (context, snapshot) {
-          mail = snapshot.data;
-          return Text(" ");
-        });
   }
 
   void initState() {
@@ -50,6 +40,7 @@ class _CouponState extends State<Coupons> {
     print(mail);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(233, 65, 82, 1),
         title: const Text('Mes coupons'),
       ),
       drawer: DrawernavBarre(),
@@ -66,7 +57,6 @@ class _CouponState extends State<Coupons> {
                 );
         },
       ),
-      bottomNavigationBar: Footer(),
     );
   }
 }
