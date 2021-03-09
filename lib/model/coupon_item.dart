@@ -2,10 +2,36 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter_app/api/api_qr_code.dart';
+import 'package:flutter_session/flutter_session.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CouponItem extends StatelessWidget {
   final List list;
   CouponItem({this.list});
+
+  dynamic email = FlutterSession().get("email");
+  ApiQrCode qrController = new ApiQrCode();
+
+  String getEmail(Future<dynamic> email){
+    return FlutterSession().get("$email").toString();
+  }
+
+  void AddCoupon(String email, String dateRef){
+    qrController.addUserCoupon(email,dateRef);
+  }
+
+  void showToastMessage(String message){
+    Fluttertoast.showToast(
+        msg: message, //message to show toast
+        toastLength: Toast.LENGTH_LONG, //duration for message to show
+        gravity: ToastGravity.CENTER, //where you want to show, top, bottom
+        //backgroundColor: Colors.red, //background Color for message
+        textColor: Colors.white, //message text color
+        fontSize: 16.0 //message font size
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,20 +91,29 @@ class CouponItem extends StatelessWidget {
                           ],
                         ),
                       ),
+
                     ],
                   ),
                 ),
               ),
             ),
+            FutureBuilder(
+                future : FlutterSession().get("email") ,
+                builder: (context, snapshot){
+                  email = snapshot.data;
+              return Text(" ");
+            }),
             new RaisedButton(
               padding: const EdgeInsets.all(8.0),
               textColor: Colors.white,
               color: Colors.blue,
-              onPressed: null,
-              child: new Text("Ajouter"),
+              onPressed: () =>{
+                this.AddCoupon(email, list[i]['stringDateRef']),
+                this.showToastMessage("Vous vennez d'ajouté un coupon"),
+              },
+              child: new Text("Ajouter le coupon"),
             ),
           ],
-
         );
       },
     );
