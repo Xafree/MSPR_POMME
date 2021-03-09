@@ -10,7 +10,6 @@ class ApiQrCode {
 
   ApiQrCode();
 
-
   Future<http.Response> addDataProduct(int codeController, context) async {
     Map data = {
       // A modifier quand le service sera good
@@ -34,5 +33,4 @@ class ApiQrCode {
     print('Response body: ${res.body}');
     return json.decode(res.body);
   }
-
 }

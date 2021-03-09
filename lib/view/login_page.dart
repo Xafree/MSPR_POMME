@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/view/register_page.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,7 +19,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   User user = User("", "");
-  String url = "http://192.168.42.138:8080/client_space/log";
+  String url = "http://192.168.0.13:8080/client_space/log";
 
   Future save() async {
     var res = await http.post(url,
@@ -27,6 +28,8 @@ class _LoginState extends State<Login> {
             json.encode({'login_mail': user.email, 'password': user.password}));
     print(res.body);
     if (res.body != null) {
+      await FlutterSession().set('email', user.email);
+
       Navigator.push(
           context,
           MaterialPageRoute(

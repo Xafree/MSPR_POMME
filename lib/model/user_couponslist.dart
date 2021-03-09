@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CouponItem extends StatelessWidget {
+class UserCoupons extends StatelessWidget {
   final List list;
-  CouponItem({this.list});
+  UserCoupons({this.list});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class CouponItem extends StatelessWidget {
                           children: [
                             Container(
                               child: Text(
-                                list[i]['type'].toString(),
+                                list[i][1].toString(),
                                 style: TextStyle(
                                     fontSize: 20.0, color: Colors.black87),
                               ),
@@ -45,7 +45,7 @@ class CouponItem extends StatelessWidget {
                           children: [
                             Container(
                               child: Text(
-                                list[i]['description'].toString(),
+                                list[i][2].toString(),
                                 style: TextStyle(
                                     fontSize: 12.0, color: Colors.black87),
                               ),
@@ -56,7 +56,7 @@ class CouponItem extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Text(
-                                    list[i]['prix'].toString() + "€",
+                                    list[i][3].toString() + "€",
                                     style: TextStyle(
                                         fontSize: 12.0, color: Colors.black87),
                                   ),
@@ -70,13 +70,6 @@ class CouponItem extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            new RaisedButton(
-              padding: const EdgeInsets.all(8.0),
-              textColor: Colors.white,
-              color: Colors.blue,
-              onPressed: null,
-              child: new Text("Ajouter"),
             ),
           ],
         );
