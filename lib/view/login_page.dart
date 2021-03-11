@@ -5,7 +5,6 @@ import 'package:flutter_app/view/register_page.dart';
 import 'package:flutter_session/flutter_session.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_session/flutter_session.dart';
 
 import '../model/user.dart';
 import 'home.dart';
