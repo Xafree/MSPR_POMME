@@ -1,22 +1,18 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_app/api/api_qr_code.dart';
 import 'package:flutter_session/flutter_session.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CouponItem extends StatelessWidget {
   final List list;
   CouponItem({this.list});
 
-  dynamic email = FlutterSession().get("email");
+  dynamic email;
   ApiQrCode qrController = new ApiQrCode();
 
-  String getEmail(Future<dynamic> email){
-    return FlutterSession().get("$email").toString();
-  }
 
   void AddCoupon(String email, String dateRef){
     qrController.addUserCoupon(email,dateRef);
@@ -24,12 +20,11 @@ class CouponItem extends StatelessWidget {
 
   void showToastMessage(String message){
     Fluttertoast.showToast(
-        msg: message, //message to show toast
-        toastLength: Toast.LENGTH_LONG, //duration for message to show
-        gravity: ToastGravity.CENTER, //where you want to show, top, bottom
-        //backgroundColor: Colors.red, //background Color for message
-        textColor: Colors.white, //message text color
-        fontSize: 16.0 //message font size
+        msg: message,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+        textColor: Colors.white,
+        fontSize: 16.0,
     );
   }
 
@@ -42,49 +37,37 @@ class CouponItem extends StatelessWidget {
           children: [
             new Container(
               child: Container(
-                //color: Colors.black,
-                height: 150.3,
+                color: Color.fromRGBO(206, 206, 206, 1),
+                height: 110,
                 child: new Card(
-                  color: Colors
-                      .primaries[Random().nextInt(Colors.primaries.length)],
+                  margin: const EdgeInsets.fromLTRB(0,0.5,0,0),
                   child: Column(
-                    mainAxisSize: MainAxisSize.min, // add this
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.fromLTRB(10,10,10,5),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
+                              padding: const EdgeInsets.fromLTRB(5,2,0,0),
                               child: Text(
                                 list[i]['type'].toString(),
-                                style: TextStyle(
-                                    fontSize: 20.0, color: Colors.black87),
-                              ),
+                                style: GoogleFonts.roboto(
+                                  fontSize: 20.0,
+                                  color: Color.fromRGBO(30, 30, 30, 1),
+                                  fontWeight: FontWeight.w600,
+                                ),
                             ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Row(
-                          children: [
-                            Container(
-                              child: Text(
-                                list[i]['description'].toString(),
-                                style: TextStyle(
-                                    fontSize: 12.0, color: Colors.black87),
-                              ),
                             ),
                             Container(
-                              margin: EdgeInsets.only(left: 20),
-                              alignment: Alignment.bottomRight,
+                              padding: const EdgeInsets.fromLTRB(10,7.5,5,5),
+                              margin: const EdgeInsets.only(left: 0.0),
                               child: Row(
                                 children: [
                                   Text(
-                                    list[i]['prix'].toString() + "€",
-                                    style: TextStyle(
-                                        fontSize: 12.0, color: Colors.black87),
+                                    list[i]['prix'].toString() + " €",
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 20.0, color: Color.fromRGBO(60, 60, 60, 1),fontWeight: FontWeight.w700,),
                                   ),
                                 ],
                               ),
@@ -92,7 +75,39 @@ class CouponItem extends StatelessWidget {
                           ],
                         ),
                       ),
-
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16,0,5,8),
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Text(
+                                list[i]['description'].toString(),
+                                style: GoogleFonts.roboto(
+                                  fontSize: 15.0,
+                                  color: Color.fromRGBO(60, 60, 60, 1),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16,0,5,5),
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Text(
+                                "Bon d'achat de "+list[i]['prix_pourcentage_reduction'].toString()+"% sur cette article",
+                                style:GoogleFonts.roboto(
+                                    fontSize: 15.0,
+                                    color: Color.fromRGBO(233, 65, 82, 1),
+                                    fontWeight: FontWeight.w600
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -107,10 +122,10 @@ class CouponItem extends StatelessWidget {
             new RaisedButton(
               padding: const EdgeInsets.all(8.0),
               textColor: Colors.white,
-              color: Colors.blue,
+              color: Color.fromRGBO(233, 65, 82, 1),
               onPressed: () =>{
                 this.AddCoupon(email, list[i]['stringDateRef']),
-                this.showToastMessage("Vous vennez d'ajouté un coupon"),
+                this.showToastMessage("Vous venez d'ajouter un coupon"),
               },
               child: new Text("Ajouter le coupon"),
             ),

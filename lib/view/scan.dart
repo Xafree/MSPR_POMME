@@ -2,9 +2,9 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/coupon_item.dart';
 import 'package:flutter_app/view/template/drawer.dart';
-import 'package:flutter_app/view/template/footer.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter_app/api/api_qr_code.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class ScanPage extends StatefulWidget {
@@ -30,14 +30,14 @@ class _ScanPageState extends State<ScanPage> {
   @override
   void initState() {
     super.initState();
-   //this.getQrCode(this.qrCodeResult);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("POMME"),
+          backgroundColor: Color.fromRGBO(233, 65, 82, 1),
+          title: Text("Scan coupon"),
           actions: <Widget>[
             IconButton(
               icon: Icon(MaterialCommunityIcons.qrcode_scan),
@@ -66,24 +66,17 @@ class _ScanPageState extends State<ScanPage> {
               list: snapshot.data,
             )
                 : new Center(
-                  child: Text("Scanner un QR code !"),
+                  child: Text("Scannez un QR code !",
+                    style: GoogleFonts.roboto(
+                      fontSize: 20.0,
+                      color: Color.fromRGBO(30, 30, 30, 1),
+                      fontWeight: FontWeight.w600,
+                    ),),
             );
           },
         ),
-        bottomNavigationBar: Footer(),
     );
   }
 }
 
 int camera = -1;
-/**
-    Center(
-    child: Text(
-    (qrCodeResult == null) || (qrCodeResult == "")
-    ? "Scanner un QR code"
-    : "le code promos est" +qrCodeResult,
-    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
-    ),
-    ));
-
-*/

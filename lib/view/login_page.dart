@@ -20,7 +20,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   User user = User("", "");
-  String url = "http://192.168.0.13:8080/client_space/log";
+  String url = "http://192.168.42.138:8080/client_space/log";
 
   Future save() async {
     var res = await http.post(url,
