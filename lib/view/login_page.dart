@@ -9,6 +9,8 @@ import 'package:flutter_session/flutter_session.dart';
 
 import '../model/user.dart';
 import 'home.dart';
+import '../api/api_url.dart';
+
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -20,17 +22,16 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   User user = User("", "");
-  String url = "http://192.168.42.138:8080/client_space/log";
 
   Future save() async {
-    var res = await http.post(url,
+    var res = await http.post(ApiURL.urlLogin,
         headers: {'Content-Type': 'application/json'},
         body:
             json.encode({'login_mail': user.email, 'password': user.password}));
     var session = FlutterSession();
     await session.set("email", user.email);
     print(res.body);
-    if (res.body != null) {
+    if (res.statusCode == 200) {
       await FlutterSession().set('email', user.email);
 
       Navigator.push(

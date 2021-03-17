@@ -8,6 +8,7 @@ class ItemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double c_width = MediaQuery.of(context).size.width*0.8;
     return new ListView.builder(
       itemCount: list == null ? 0 : list.length,
       itemBuilder: (context, i) {
@@ -16,7 +17,7 @@ class ItemList extends StatelessWidget {
             new Container(
               child: Container(
                 color: Color.fromRGBO(206, 206, 206, 1),
-                height: 110,
+                height: 120,
                 child: new Card(
                   margin: const EdgeInsets.fromLTRB(0,0.5,0,0),
                   child: Column(
@@ -54,6 +55,7 @@ class ItemList extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
+                              width:c_width,
                               child: Text(
                                  ""+list[i]['description'].toString(),
                                 style: GoogleFonts.roboto(

@@ -30,6 +30,7 @@ class CouponItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double c_width = MediaQuery.of(context).size.width*0.8;
     return new ListView.builder(
       itemCount: list == null ? 0 : list.length,
       itemBuilder: (context, i) {
@@ -80,6 +81,7 @@ class CouponItem extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
+                              width:c_width,
                               child: Text(
                                 list[i]['description'].toString(),
                                 style: GoogleFonts.roboto(

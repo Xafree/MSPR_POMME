@@ -29,23 +29,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/*
-void main() {
-  runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'POMME',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      //home: Login(),
-      routes: {
-        '/': (_) => Login(),
-        '/home': (_) => Home(),
-        '/mescoupons': (_) => Coupons(),
-        ScanPage.routeName: (_) => ScanPage(),
-      }));
-}
-
- */
