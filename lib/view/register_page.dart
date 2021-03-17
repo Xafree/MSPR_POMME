@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 import '../model/user.dart';
+import '../api/api_url.dart';
 
 class Register extends StatefulWidget {
   Register({Key key}) : super(key: key);
@@ -16,10 +17,9 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
   User user = User("", "");
-  String url = "http://192.168.42.138:8080/client_space/create";
 
   Future save() async {
-    var res = await http.post(url,
+    var res = await http.post(ApiURL.urlRegister,
         headers: {'Content-Type': 'application/json'},
         body:
             json.encode({'login_mail': user.email, 'password': user.password}));
