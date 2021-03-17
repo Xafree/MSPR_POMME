@@ -93,6 +93,7 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                         TextFormField(
+                          key: Key("user_email"),
                           controller: TextEditingController(text: user.email),
                           onChanged: (val) {
                             user.email = val;
@@ -129,9 +130,10 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                         TextFormField(
+                          key: Key("pass_word"),
                           obscureText: true,
                           controller:
-                              TextEditingController(text: user.password),
+                              TextEditingController( text: user.password),
                           onChanged: (val) {
                             user.password = val;
                           },
@@ -183,6 +185,7 @@ class _LoginState extends State<Login> {
                   height: 90,
                   width: 90,
                   child: FlatButton(
+                    key : Key("log_button"),
                       color: Color.fromRGBO(233, 65, 82, 1),
                       onPressed: () {
                         if (_formKey.currentState.validate()) {

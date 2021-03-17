@@ -27,13 +27,15 @@ class DrawernavBarre extends StatelessWidget {
             ),
           ),
           ListTile(
+            key: Key("goToHome"),
             leading: Icon(Icons.home),
-            title: Text('Home'),
+            title: Tooltip(message: "Home", child: Text('Accueil')),
             onTap: () {
               Navigator.of(context).pushNamed(Home.routeName);
             },
           ),
           ListTile(
+            key: Key("goToQrCode"),
             leading: Icon(Icons.qr_code),
             title: Text('QR Ccode'),
             onTap: () {
@@ -41,13 +43,15 @@ class DrawernavBarre extends StatelessWidget {
             },
           ),
           ListTile(
+            key: Key("goToMesCoupons"),
             leading: Icon(Icons.settings),
-            title: Text('Mes coupons'),
+            title: Tooltip(message: "goToMesCoupons", child: Text('Mes Coupons')),
             onTap: () {
               Navigator.of(context).pushNamed(Coupons.routeName);
             },
           ),
           ListTile(
+            key: Key(""),
             leading: Icon(Icons.logout),
             title: Text('Deconnexion'),
             onTap: () {
