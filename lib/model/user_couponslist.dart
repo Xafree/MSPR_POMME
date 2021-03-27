@@ -17,7 +17,6 @@ class UserCoupons extends StatelessWidget {
             new Container(
               child: Container(
                 color: Color.fromRGBO(206, 206, 206, 1),
-                height: 110,
                 child: new Card(
                   margin: const EdgeInsets.fromLTRB(0,0.5,0,0),
                   child: Column(
@@ -72,6 +71,7 @@ class UserCoupons extends StatelessWidget {
                          child: Row(
                            children: [
                              Container(
+                               width:c_width,
                                child: Text(
                                  "Vous avez un bon d'achat de "+list[i][4].toString()+"% sur cette article ",
                                  style: GoogleFonts.roboto(
