@@ -59,7 +59,7 @@ class _RegisterState extends State<Register> {
                         SizedBox(
                           height: 30,
                         ),
-                        Text("Register",
+                        Text("Inscription",
                             style: GoogleFonts.pacifico(
                               fontWeight: FontWeight.bold,
                               fontSize: 50,
@@ -86,7 +86,7 @@ class _RegisterState extends State<Register> {
                           },
                           validator: (value) {
                             if (value.isEmpty) {
-                              return 'Email is Empty';
+                              return 'Email non renseigné';
                             }
                             return null;
                           },
@@ -107,7 +107,7 @@ class _RegisterState extends State<Register> {
                         Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            "Password",
+                            "Mot de passe",
                             style: GoogleFonts.roboto(
                               // fontWeight: FontWeight.bold,
                               fontSize: 30,
@@ -124,7 +124,7 @@ class _RegisterState extends State<Register> {
                           },
                           validator: (value) {
                             if (value.isEmpty) {
-                              return 'Password is Empty';
+                              return 'Mot de passe non renseigné';
                             }
                             return null;
                           },
@@ -148,7 +148,7 @@ class _RegisterState extends State<Register> {
                               Navigator.pop(context);
                             },
                             child: Text(
-                              "Already have Account ?",
+                              "Déjà inscrit ?",
                               style: GoogleFonts.roboto(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,

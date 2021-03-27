@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:charset_converter/charset_converter.dart';
+import 'dart:convert';
 
 class ItemList extends StatelessWidget {
   final List list;
@@ -17,7 +19,6 @@ class ItemList extends StatelessWidget {
             new Container(
               child: Container(
                 color: Color.fromRGBO(206, 206, 206, 1),
-                height: 120,
                 child: new Card(
                   margin: const EdgeInsets.fromLTRB(0,0.5,0,0),
                   child: Column(
@@ -51,7 +52,7 @@ class ItemList extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(16,0,5,8),
+                        padding: const EdgeInsets.fromLTRB(16,0,5,1),
                         child: Row(
                           children: [
                             Container(
@@ -72,6 +73,7 @@ class ItemList extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
+                              width:c_width,
                               child: Text(
                                 "Obtenez une reduction de "+list[i]['prix_pourcentage_reduction'].toString()+"% avec un code promo ",
                                 style: GoogleFonts.roboto(
