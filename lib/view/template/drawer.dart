@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/view/home.dart';
 import 'package:flutter_app/view/scan.dart';
-import 'package:flutter_session/flutter_session.dart';
 import '../coupons.dart';
 import '../login_page.dart';
 
@@ -10,6 +9,7 @@ class DrawernavBarre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      key: Key('openDrawer'),
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
@@ -27,15 +27,15 @@ class DrawernavBarre extends StatelessWidget {
             ),
           ),
           ListTile(
-            key: Key("goToHome"),
+
             leading: Icon(Icons.home),
-            title: Tooltip(message: "Home", child: Text('Accueil')),
+            title: Text('Accueil'),
             onTap: () {
               Navigator.of(context).pushNamed(Home.routeName);
             },
           ),
           ListTile(
-            key: Key("goToQrCode"),
+            key: Key("qr_code"),
             leading: Icon(Icons.qr_code),
             title: Text('QR Ccode'),
             onTap: () {
@@ -43,7 +43,7 @@ class DrawernavBarre extends StatelessWidget {
             },
           ),
           ListTile(
-            key: Key("goToMesCoupons"),
+            key: Key("Mes coupons"),
             leading: Icon(Icons.settings),
             title: Tooltip(message: "goToMesCoupons", child: Text('Mes Coupons')),
             onTap: () {
@@ -51,12 +51,11 @@ class DrawernavBarre extends StatelessWidget {
             },
           ),
           ListTile(
-            key: Key(""),
+            key: Key("deconnexion"),
             leading: Icon(Icons.logout),
             title: Text('Deconnexion'),
             onTap: () {
               Navigator.push(
-                // Faire un destroye de la session
                   context, MaterialPageRoute(builder: (context) => Login()));
             },
           ),

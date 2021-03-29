@@ -14,8 +14,13 @@ class CouponItem extends StatelessWidget {
   ApiQrCode qrController = new ApiQrCode();
 
 
-  void AddCoupon(String email, String dateRef){
-    qrController.addUserCoupon(email,dateRef);
+ AddCoupon(String email, String dateRef){
+    var res = qrController.addUserCoupon(email,dateRef);
+    if(res == 200){
+      this.showToastMessage("Vous venez d'ajouter un coupon");
+    }else{
+      this.showToastMessage("Ce coupon existe déjà dans votre espace");
+    }
   }
 
   void showToastMessage(String message){
@@ -39,7 +44,6 @@ class CouponItem extends StatelessWidget {
             new Container(
               child: Container(
                 color: Color.fromRGBO(206, 206, 206, 1),
-                height: 110,
                 child: new Card(
                   margin: const EdgeInsets.fromLTRB(0,0.5,0,0),
                   child: Column(
@@ -98,6 +102,7 @@ class CouponItem extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
+                              width : c_width,
                               child: Text(
                                 "Bon d'achat de "+list[i]['prix_pourcentage_reduction'].toString()+"% sur cette article",
                                 style:GoogleFonts.roboto(
@@ -121,13 +126,14 @@ class CouponItem extends StatelessWidget {
                   email = snapshot.data;
               return Text(" ");
             }),
+            // ignore: deprecated_member_use
             new RaisedButton(
               padding: const EdgeInsets.all(8.0),
               textColor: Colors.white,
               color: Color.fromRGBO(233, 65, 82, 1),
-              onPressed: () =>{
+              onPressed: () async =>{
+                print(email),
                 this.AddCoupon(email, list[i]['stringDateRef']),
-                this.showToastMessage("Vous venez d'ajouter un coupon"),
               },
               child: new Text("Ajouter le coupon"),
             ),

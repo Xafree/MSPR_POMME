@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:charset_converter/charset_converter.dart';
-import 'dart:convert';
+
 
 class ItemList extends StatelessWidget {
   final List list;

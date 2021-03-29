@@ -1,17 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_app/api/login_register_api.dart';
 import 'package:flutter_app/view/register_page.dart';
-import 'package:flutter_session/flutter_session.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter_session/flutter_session.dart';
-
 import '../model/user.dart';
-import 'home.dart';
-import '../api/api_url.dart';
-
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -23,42 +14,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   User user = User("", "");
-
-  Future save() async {
-    var res = await http.post(ApiURL.urlLogin,
-        headers: {'Content-Type': 'application/json'},
-        body:
-            json.encode({'login_mail': user.email, 'password': user.password}));
-    var session = FlutterSession();
-    await session.set("email", user.email);
-    print(res.body);
-    if (res.statusCode == 200) {
-      await FlutterSession().set('email', user.email);
-
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Home(),
-          ));
-    } else if (res.statusCode == 400) {
-      Fluttertoast.showToast(
-        msg: "Mot de passe incorrect",
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
-    }
-    else if (res.statusCode == 404) {
-      Fluttertoast.showToast(
-        msg: "Vous n'êtes pas encore inscrit",
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
-    }
-  }
+  final log = LoginRegisterApi();
 
   @override
   Widget build(BuildContext context) {
@@ -207,7 +163,7 @@ class _LoginState extends State<Login> {
                       color: Color.fromRGBO(233, 65, 82, 1),
                       onPressed: () {
                         if (_formKey.currentState.validate()) {
-                          save();
+                          this.log.save(user.email, user.password, context);
                         }
                       },
                       shape: RoundedRectangleBorder(

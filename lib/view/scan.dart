@@ -1,6 +1,6 @@
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/coupon_item.dart';
+import 'package:flutter_app/view/template/coupon_item.dart';
 import 'package:flutter_app/view/template/drawer.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter_app/api/api_qr_code.dart';
@@ -28,18 +28,15 @@ class _ScanPageState extends State<ScanPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          key : Key("drawerBar"),
           backgroundColor: Color.fromRGBO(233, 65, 82, 1),
           title: Text("Scan coupon"),
           actions: <Widget>[
             IconButton(
+              key: Key("ButtonScan"),
               icon: Icon(MaterialCommunityIcons.qrcode_scan),
               onPressed: () async {
                 ScanResult codeSanner = await BarcodeScanner.scan(
@@ -49,7 +46,6 @@ class _ScanPageState extends State<ScanPage> {
                 ); //barcode scanner
                 setState(() {
                   qrCodeResult = codeSanner.rawContent;
-                  this.getQrCode(qrCodeResult);
                   (qrCodeResult == null && qrCodeResult == "")? scanValeur=false:scanValeur=true;
                 });
               },
