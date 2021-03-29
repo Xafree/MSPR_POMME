@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/api/api_product.dart';
-import 'package:flutter_app/model/user_couponslist.dart';
+import 'file:///C:/Users/emman/Desktop/cour%20EPSI/MSPR/MSPR_POMME/lib/view/template/user_couponslist.dart';
 import 'package:flutter_session/flutter_session.dart';
 import 'template/drawer.dart';
 
@@ -49,10 +49,14 @@ class _CouponState extends State<Coupons> {
           if (snapshot.hasError) print(snapshot.error);
           return snapshot.hasData
               ? new UserCoupons(
-                  list: snapshot.data,
+                  list: snapshot.data
                 )
               : new Center(
-                  child: new CircularProgressIndicator(),
+                  child: Text(
+                    'Vous n\'avez pas encore de coupons enregistrés',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontWeight: FontWeight.bold)
+                  )
                 );
         },
       ),

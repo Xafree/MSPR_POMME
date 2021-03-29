@@ -2,12 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ItemList extends StatelessWidget {
+class UserCoupons extends StatelessWidget {
   final List list;
-  ItemList({this.list});
+  UserCoupons({this.list});
 
   @override
   Widget build(BuildContext context) {
+    double c_width = MediaQuery.of(context).size.width*0.8;
     return new ListView.builder(
       itemCount: list == null ? 0 : list.length,
       itemBuilder: (context, i) {
@@ -16,11 +17,10 @@ class ItemList extends StatelessWidget {
             new Container(
               child: Container(
                 color: Color.fromRGBO(206, 206, 206, 1),
-                height: 110,
                 child: new Card(
                   margin: const EdgeInsets.fromLTRB(0,0.5,0,0),
                   child: Column(
-                    children: [
+                     children: [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10,10,10,5),
                         child: Row(
@@ -29,21 +29,21 @@ class ItemList extends StatelessWidget {
                             Container(
                               padding: const EdgeInsets.fromLTRB(5,2,0,0),
                               child: Text(
-                                list[i]['type'].toString(),
+                                list[i][1].toString(),
                                 style: GoogleFonts.roboto(
-                                    fontSize: 20.0,
-                                    color: Color.fromRGBO(30, 30, 30, 1),
-                                    fontWeight: FontWeight.w600,
-                                    ),
+                                  fontSize: 20.0,
+                                  color: Color.fromRGBO(30, 30, 30, 1),
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
+                            ),
                             Container(
-                              padding: const EdgeInsets.fromLTRB(10,7.5,5,5),
-                              margin: const EdgeInsets.only(left: 0.0),
-                              child: Text(
-                                list[i]['prix'].toString() +" €",
+                              margin: EdgeInsets.only(left: 20),
+                              alignment: Alignment.bottomRight,
+                              child:Text(
+                                list[i][3].toString() + "€",
                                 style: GoogleFonts.roboto(
-                                    fontSize: 20.0, color: Color.fromRGBO(60, 60, 60, 1),fontWeight: FontWeight.w700,),
+                                  fontSize: 20.0, color: Color.fromRGBO(60, 60, 60, 1),fontWeight: FontWeight.w700,),
                               ),
                             ),
                           ],
@@ -54,34 +54,36 @@ class ItemList extends StatelessWidget {
                         child: Row(
                           children: [
                             Container(
+                              width:c_width,
                               child: Text(
-                                 ""+list[i]['description'].toString(),
+                                ""+list[i][2].toString(),
                                 style: GoogleFonts.roboto(
-                                    fontSize: 15.0,
-                                    color: Color.fromRGBO(60, 60, 60, 1),
+                                  fontSize: 15.0,
+                                  color: Color.fromRGBO(60, 60, 60, 1),
                                 ),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(16,0,5,5),
-                        child: Row(
-                          children: [
-                            Container(
-                              child: Text(
-                                "Obtenez une reduction de "+list[i]['prix_pourcentage_reduction'].toString()+"% avec un code promo ",
-                                style: GoogleFonts.roboto(
-                                    fontSize: 15.0,
-                                    color: Color.fromRGBO(233, 65, 82, 1),
-                                    fontWeight: FontWeight.w600
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                       Padding(
+                         padding: const EdgeInsets.fromLTRB(16,0,5,5),
+                         child: Row(
+                           children: [
+                             Container(
+                               width:c_width,
+                               child: Text(
+                                 "Vous avez un bon d'achat de "+list[i][4].toString()+"% sur cette article ",
+                                 style: GoogleFonts.roboto(
+                                     fontSize: 15.0,
+                                     color: Color.fromRGBO(233, 65, 82, 1),
+                                     fontWeight: FontWeight.w600
+                                 ),
+                               ),
+                             ),
+                           ],
+                         ),
+                       ),
                     ],
                   ),
                 ),

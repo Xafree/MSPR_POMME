@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_app/api/login_register_api.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-
 import '../model/user.dart';
+
 
 class Register extends StatefulWidget {
   Register({Key key}) : super(key: key);
@@ -16,18 +14,8 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
   User user = User("", "");
-  String url = "http://192.168.42.138:8080/client_space/create";
 
-  Future save() async {
-    var res = await http.post(url,
-        headers: {'Content-Type': 'application/json'},
-        body:
-            json.encode({'login_mail': user.email, 'password': user.password}));
-    print(res.body);
-    if (res.body != null) {
-      Navigator.pop(context);
-    }
-  }
+  final log = LoginRegisterApi();
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +47,7 @@ class _RegisterState extends State<Register> {
                         SizedBox(
                           height: 30,
                         ),
-                        Text("Register",
+                        Text("Inscription",
                             style: GoogleFonts.pacifico(
                               fontWeight: FontWeight.bold,
                               fontSize: 50,
@@ -86,7 +74,7 @@ class _RegisterState extends State<Register> {
                           },
                           validator: (value) {
                             if (value.isEmpty) {
-                              return 'Email is Empty';
+                              return 'Email non renseigné';
                             }
                             return null;
                           },
@@ -107,7 +95,7 @@ class _RegisterState extends State<Register> {
                         Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            "Password",
+                            "Mot de passe",
                             style: GoogleFonts.roboto(
                               // fontWeight: FontWeight.bold,
                               fontSize: 30,
@@ -124,7 +112,7 @@ class _RegisterState extends State<Register> {
                           },
                           validator: (value) {
                             if (value.isEmpty) {
-                              return 'Password is Empty';
+                              return 'Mot de passe non renseigné';
                             }
                             return null;
                           },
@@ -148,7 +136,7 @@ class _RegisterState extends State<Register> {
                               Navigator.pop(context);
                             },
                             child: Text(
-                              "Already have Account ?",
+                              "Déjà inscrit ?",
                               style: GoogleFonts.roboto(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
@@ -166,11 +154,13 @@ class _RegisterState extends State<Register> {
                 Container(
                   height: 90,
                   width: 90,
+                  // ignore: deprecated_member_use
                   child: FlatButton(
                       color: Color.fromRGBO(233, 65, 82, 1),
                       onPressed: () {
                         if (_formKey.currentState.validate()) {
-                          save();
+                          this.log.saveRegister(user.email, user.password, context);
+                          //save();
                         }
                       },
                       shape: RoundedRectangleBorder(

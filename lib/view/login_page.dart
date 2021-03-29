@@ -1,13 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_app/api/login_register_api.dart';
 import 'package:flutter_app/view/register_page.dart';
-import 'package:flutter_session/flutter_session.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-
 import '../model/user.dart';
-import 'home.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -19,26 +14,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
   User user = User("", "");
-  String url = "http://192.168.42.138:8080/client_space/log";
-
-  Future save() async {
-    var res = await http.post(url,
-        headers: {'Content-Type': 'application/json'},
-        body:
-            json.encode({'login_mail': user.email, 'password': user.password}));
-    var session = FlutterSession();
-    await session.set("email", user.email);
-    print(res.body);
-    if (res.body != null) {
-      await FlutterSession().set('email', user.email);
-
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Home(),
-          ));
-    }
-  }
+  final log = LoginRegisterApi();
 
   @override
   Widget build(BuildContext context) {
@@ -91,13 +67,14 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                         TextFormField(
+                          key: Key("user_email"),
                           controller: TextEditingController(text: user.email),
                           onChanged: (val) {
                             user.email = val;
                           },
                           validator: (value) {
                             if (value.isEmpty) {
-                              return 'Email is Empty';
+                              return 'Email non renseigné';
                             }
                             return null;
                           },
@@ -127,15 +104,16 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                         TextFormField(
+                          key: Key("pass_word"),
                           obscureText: true,
                           controller:
-                              TextEditingController(text: user.password),
+                              TextEditingController( text: user.password),
                           onChanged: (val) {
                             user.password = val;
                           },
                           validator: (value) {
                             if (value.isEmpty) {
-                              return 'Password is Empty';
+                              return 'Mot de passe non renseigné';
                             }
                             return null;
                           },
@@ -162,7 +140,7 @@ class _LoginState extends State<Login> {
                                       builder: (context) => Register()));
                             },
                             child: Text(
-                              "Dont have Account ?",
+                              'Pas encore inscrit ?',
                               style: GoogleFonts.roboto(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
@@ -181,10 +159,11 @@ class _LoginState extends State<Login> {
                   height: 90,
                   width: 90,
                   child: FlatButton(
+                    key : Key("log_button"),
                       color: Color.fromRGBO(233, 65, 82, 1),
                       onPressed: () {
                         if (_formKey.currentState.validate()) {
-                          save();
+                          this.log.save(user.email, user.password, context);
                         }
                       },
                       shape: RoundedRectangleBorder(
