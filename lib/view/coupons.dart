@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/api/api_product.dart';
-import 'file:///C:/Users/emman/Desktop/cour%20EPSI/MSPR/MSPR_POMME/lib/view/template/user_couponslist.dart';
+import 'package:flutter_app/view/template/user_couponslist.dart';
 import 'package:flutter_session/flutter_session.dart';
 import 'template/drawer.dart';
 
