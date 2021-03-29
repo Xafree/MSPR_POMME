@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_app/api/login_register_api.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-
 import '../model/user.dart';
-import '../api/api_url.dart';
+
 
 class Register extends StatefulWidget {
   Register({Key key}) : super(key: key);
@@ -18,16 +15,7 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
   User user = User("", "");
 
-  Future save() async {
-    var res = await http.post(ApiURL.urlRegister,
-        headers: {'Content-Type': 'application/json'},
-        body:
-            json.encode({'login_mail': user.email, 'password': user.password}));
-    print(res.body);
-    if (res.body != null) {
-      Navigator.pop(context);
-    }
-  }
+  final log = LoginRegisterApi();
 
   @override
   Widget build(BuildContext context) {
@@ -166,11 +154,13 @@ class _RegisterState extends State<Register> {
                 Container(
                   height: 90,
                   width: 90,
+                  // ignore: deprecated_member_use
                   child: FlatButton(
                       color: Color.fromRGBO(233, 65, 82, 1),
                       onPressed: () {
                         if (_formKey.currentState.validate()) {
-                          save();
+                          this.log.saveRegister(user.email, user.password, context);
+                          //save();
                         }
                       },
                       shape: RoundedRectangleBorder(

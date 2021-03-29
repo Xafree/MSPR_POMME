@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/api/api_product.dart';
 import '../api/api_qr_code.dart';
 import 'template/drawer.dart';
-import '../model/item_liste.dart';
+import 'template/item_liste.dart';
 
 
 class Home extends StatefulWidget{
@@ -22,6 +22,7 @@ class _HomeState extends State<Home>{
   ApiQrCode controller = new ApiQrCode();
   ApiProduct productController = new ApiProduct();
 
+
   Future<List> getData() async {
     return productController.getAllProductHtpp();
   }
@@ -35,8 +36,10 @@ class _HomeState extends State<Home>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: Key("Scaffold"),
       appBar: AppBar(
-        title: const Text('GoStyle'),
+        key: Key("drawerBar"),
+        title: Tooltip(message: "Open navigation menu", child: Text('GoStyle')),
         backgroundColor: Color.fromRGBO(233, 65, 82, 1),
       ),
       drawer: DrawernavBarre(),
@@ -58,16 +61,3 @@ class _HomeState extends State<Home>{
     );
   }
 }
-
-/**      appBar: AppBar(
-    title: const Text("AppBar Test"),
-    ),
-
-    body: Column(
-    children: [
-    Text("Score : ${this._score}"),
-    IconButton(icon: Icon(Icons.plus_one),iconSize: 50, onPressed: _plusOneScore),
-    IconButton(icon: Icon(Icons.reset_tv), onPressed: _plusResetScore),
-    ElevatedButton.icon(onPressed: _plusOneScore(),label: Text("Ajouter 1 au score"),icon: Icon(Icons.plus_one)),
-    ],
-    ) **/

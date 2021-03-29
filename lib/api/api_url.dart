@@ -1,9 +1,9 @@
 class ApiURL {
-  static const urlAddOneCoupon    = 'http://192.168.56.1:8080/clientspace/coupon';
-  static const urlGetOneCoupon    = 'http://192.168.56.1:8080/couponresponse/';
-  static const urlPostOneProduct  = 'http://192.168.56.1:8080/product';
-  static const urlGetAllProduct   = 'http://192.168.56.1:8080/couponresponse/ville/all';
-  static const urlGetCouponByMail = 'http://192.168.56.1:8080/clientspace/coupons';
-  static const urlLogin           = "http://192.168.56.1:8080/client_space/log";
-  static const urlRegister        = "http://192.168.56.1:8080/client_space/create";
+  static const urlAddOneCoupon    = 'https://apicoupons.azurewebsites.net/clientspace/coupon';
+  static const urlGetOneCoupon    = 'https://apicoupons.azurewebsites.net/couponresponse/';
+  static const urlPostOneProduct  = 'https://apicoupons.azurewebsites.net/product';
+  static const urlGetAllProduct   = 'https://apicoupons.azurewebsites.net/couponresponse/ville/all';
+  static const urlGetCouponByMail = 'https://apicoupons.azurewebsites.net/clientspace/coupons';
+  static const urlLogin           = "https://apicoupons.azurewebsites.net/client_space/log";
+  static const urlRegister        = "https://apicoupons.azurewebsites.net/client_space/create";
 }
