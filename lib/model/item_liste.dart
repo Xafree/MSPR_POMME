@@ -60,7 +60,7 @@ class ItemList extends StatelessWidget {
                               child: Text(
                                  ""+list[i]['description'].toString(),
                                 style: GoogleFonts.roboto(
-                                    fontSize: 15.0,
+                                    fontSize: 14.5,
                                     color: Color.fromRGBO(60, 60, 60, 1),
                                 ),
                               ),
@@ -75,7 +75,7 @@ class ItemList extends StatelessWidget {
                             Container(
                               width:c_width,
                               child: Text(
-                                "Obtenez une reduction de "+list[i]['prix_pourcentage_reduction'].toString()+"% avec un code promo ",
+                                "Obtenez une reduction de "+list[i]['prix_pourcentage_reduction'].toString()+"% avec un code promo",
                                 style: GoogleFonts.roboto(
                                     fontSize: 15.0,
                                     color: Color.fromRGBO(233, 65, 82, 1),
