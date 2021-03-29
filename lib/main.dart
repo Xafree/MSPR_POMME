@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/view/coupons.dart';
 import 'package:flutter_app/view/login_page.dart';
-//import 'package:flutter_driver/driver_extension.dart';
 import 'view/home.dart';
 import 'view/scan.dart';
 
