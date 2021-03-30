@@ -55,6 +55,7 @@ void main() {
       await driver.waitFor(openDrawer);
       await driver.scroll(openDrawer,-600, 0, Duration(milliseconds: 500));
       await driver.getText(find.text('Menu'));
+      print('clicked on drawer');
       sleep(Duration(seconds: 2));
       await driver.tap(find.byValueKey('Mes coupons'));
       sleep(Duration(seconds: 5));
@@ -62,11 +63,12 @@ void main() {
 
     test('to go deconnection', () async {
       final openDrawer = find.byValueKey('drawerBar');
-      await driver.waitFor(openDrawer);
+      //await driver.waitFor(openDrawer);
       await driver.scroll(openDrawer,600, 0, Duration(milliseconds: 500));
+      print('clicked on drawer');
       await driver.getText(find.text('Menu'));
       sleep(Duration(seconds: 2));
-      await driver.tap(find.byValueKey('deconnexion'));
+      await driver.tap(find.byValueKey('deconnexion page'));
       //sleep(Duration(seconds: 5));
     });
   });

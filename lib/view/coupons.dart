@@ -39,6 +39,7 @@ class _CouponState extends State<Coupons> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        key : Key("drawerBar"),
         backgroundColor: Color.fromRGBO(233, 65, 82, 1),
         title: const Text('Mes coupons'),
       ),
