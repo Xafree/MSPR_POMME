@@ -51,7 +51,7 @@ class DrawernavBarre extends StatelessWidget {
             },
           ),
           ListTile(
-            key: Key("deconnexion"),
+            key: Key("deconnexion page"),
             leading: Icon(Icons.logout),
             title: Text('Deconnexion'),
             onTap: () {
