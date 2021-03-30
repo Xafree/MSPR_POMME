@@ -14,8 +14,8 @@ class CouponItem extends StatelessWidget {
   ApiQrCode qrController = new ApiQrCode();
 
 
- AddCoupon(String email, String dateRef){
-    var res = qrController.addUserCoupon(email,dateRef);
+  AddCoupon(String email, String dateRef) async {
+    var res = await qrController.addUserCoupon(email,dateRef);
     if(res == 200){
       this.showToastMessage("Vous venez d'ajouter un coupon");
     }else{
